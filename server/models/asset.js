@@ -15,8 +15,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "AssetId",
       });
 
-      Asset.belongsToMany(models.Product, {
-        through: models.ProductAsset,
+      Asset.hasOne(models.ProductAsset, {
         foreignKey: "AssetId",
       });
     }
