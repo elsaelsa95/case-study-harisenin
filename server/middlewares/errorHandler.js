@@ -13,7 +13,7 @@ const errorHandler = (error, req, res, next) => {
     message = "Invalid Input";
   } else if (error.name === "Data not found") {
     errorCode = 404;
-    message = "Data nof found";
+    message = "Data not found";
   }
   res.status(errorCode).json({ message });
 };
