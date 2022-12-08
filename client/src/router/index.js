@@ -3,6 +3,7 @@ import Home from "./../pages/Home";
 import Asset from "./../pages/Asset";
 import Category from "./../pages/Category";
 import Product from "./../pages/Product";
+import FormAsset from "./../components/FormAsset"
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,14 @@ const router = createBrowserRouter([
   {
     path: "/assets",
     element: <Asset />,
+  },
+  {
+    path: "/createAsset",
+    element: <FormAsset />,
+  },
+  {
+    path: "/asset/:id",
+    element: <FormAsset />,
   },
   {
     path: "/categories",
