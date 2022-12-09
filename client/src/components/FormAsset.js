@@ -56,9 +56,6 @@ export default function FormCreate() {
       ...input,
       [e.target.name]: e.target.value,
     });
-    console.log(e.target.name)
-    console.log(e.target.value)
-    console.log(e.target)
   };
 
   const handleSubmit = (e) => {

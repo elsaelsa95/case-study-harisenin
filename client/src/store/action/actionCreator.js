@@ -2,6 +2,9 @@ export const createAsset = (payload) => {
   return (dispatch, getState) => {
     fetch("http://localhost:3001/assets", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(payload),
     })
       .then((response) => {
@@ -67,6 +70,9 @@ export const updateAsset = (id, payload) => {
   return (dispatch, getState) => {
     fetch(`http://localhost:3001/assets/${id}`, {
       method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(payload),
     })
       .then((response) => {
@@ -114,6 +120,9 @@ export const createCategory = (payload) => {
   return (dispatch, getState) => {
     fetch("http://localhost:3001/categories", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(payload),
     })
       .then((response) => {
@@ -123,7 +132,7 @@ export const createCategory = (payload) => {
         return response.json();
       })
       .then((data) => {
-        dispatch(readAsset());
+        dispatch(readCategory());
       })
       .catch((error) => {
         return error;
@@ -179,6 +188,9 @@ export const updateCategory = (id, payload) => {
   return (dispatch, getState) => {
     fetch(`http://localhost:3001/categories/${id}`, {
       method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(payload),
     })
       .then((response) => {
@@ -222,9 +234,33 @@ export const deleteCategory = (id) => {
   };
 };
 
+export const createProduct = (payload) => {
+  return (dispatch, getState) => {
+    fetch("http://localhost:3001/products", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not OK");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        dispatch(readProduct());
+      })
+      .catch((error) => {
+        return error;
+      });
+  };
+};
+
 export const readProduct = (payload) => {
   return (dispatch, getState) => {
-    fetch("http://localhost:3001/productAsset", {})
+    fetch("http://localhost:3001/products", {})
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not OK");
@@ -244,9 +280,58 @@ export const readProduct = (payload) => {
   };
 };
 
+export const readDetailProduct = (id) => {
+  return (dispatch, getState) => {
+    fetch(`http://localhost:3001/products/${id}`, {
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not OK");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        dispatch({ type: "READ_DETAIL_PRODUCT", payload: data });
+      })
+      .catch((error) => {
+        console.error(
+          "There has been a problem with your fetch operation:",
+          error
+        );
+      });
+  };
+};
+
+export const updateProduct = (id, payload) => {
+  return (dispatch, getState) => {
+    fetch(`http://localhost:3001/products/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not OK");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        dispatch({ type: "UPDATE_PRODUCT", payload: data });
+      })
+      .catch((error) => {
+        console.error(
+          "There has been a problem with your fetch operation:",
+          error
+        );
+      });
+  };
+};
+
 export const deleteProduct = (id) => {
   return (dispatch, getState) => {
-    fetch(`http://localhost:3001/productAsset/${id}`, {
+    fetch(`http://localhost:3001/products/${id}`, {
       method: "DELETE",
     })
       .then((response) => {

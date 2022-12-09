@@ -8,6 +8,7 @@ const initialState = {
   products: [],
   assetById: "",
   categoryById: "",
+  productById: "",
 };
 
 function rootReducer(state = initialState, action) {
@@ -49,6 +50,17 @@ function rootReducer(state = initialState, action) {
         ...state,
         products: action.payload,
       };
+    case "READ_DETAIL_PRODUCT":
+      return {
+        ...state,
+        productById: action.payload,
+      };
+    case "UPDATE_PRODUCT":
+      return {
+        ...state,
+        productById: action.payload,
+      };
+      
     default:
       return state;
   }

@@ -1,5 +1,5 @@
 const urlSlug = require("url-slug");
-const { Product, ProductAsset } = require("./../models");
+const { Product} = require("./../models");
 
 class Controller {
   static async create(req, res, next) {
@@ -20,7 +20,7 @@ class Controller {
   }
   static async list(req, res, next) {
     try {
-      const findAllProducts = await ProductAsset.findAll();
+      const findAllProducts = await Product.findAll();
       if (!findAllProducts) {
         throw { name: "Data not found" };
       } else {
