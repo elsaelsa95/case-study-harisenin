@@ -12,7 +12,7 @@ function CardAsset({ asset }) {
   const navigate = useNavigate();
   const handleGoToEdit = (id) => {
     navigate({
-      pathname: `/asset/${id}`,
+      pathname: `/assets/${id}`,
     });
   };
 

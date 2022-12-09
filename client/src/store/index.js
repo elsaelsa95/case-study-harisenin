@@ -4,6 +4,7 @@ import thunk from "redux-thunk";
 
 const initialState = {
   asset: [],
+  category:[]
 };
 
 function rootReducer(state = initialState, action) {
@@ -12,6 +13,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         asset: action.payload,
+      };
+      case "READ_CATEGORY":
+      return {
+        ...state,
+        category: action.payload,
       };
     default:
       return state;

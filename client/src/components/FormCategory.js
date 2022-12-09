@@ -1,9 +1,9 @@
-export default function FormAsset() {
+export default function FormCategory() {
     return (
       <div>
         <section className="py-5">
           <div className="container">
-            <h1>Form Asset</h1>
+            <h1>Form Category</h1>
           </div>
         </section>
       </div>
