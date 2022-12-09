@@ -234,6 +234,30 @@ export const deleteCategory = (id) => {
   };
 };
 
+export const createProduct = (payload) => {
+  return (dispatch, getState) => {
+    fetch("http://localhost:3001/products", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not OK");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        dispatch(readProduct());
+      })
+      .catch((error) => {
+        return error;
+      });
+  };
+};
+
 export const readProduct = (payload) => {
   return (dispatch, getState) => {
     fetch("http://localhost:3001/productAsset", {})
@@ -246,6 +270,55 @@ export const readProduct = (payload) => {
       .then((data) => {
         dispatch({ type: "READ_PRODUCT", payload: data });
         console.log(data, "data");
+      })
+      .catch((error) => {
+        console.error(
+          "There has been a problem with your fetch operation:",
+          error
+        );
+      });
+  };
+};
+
+export const readDetailProduct = (id) => {
+  return (dispatch, getState) => {
+    fetch(`http://localhost:3001/products/${id}`, {
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not OK");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        dispatch({ type: "READ_DETAIL_PRODUCT", payload: data });
+      })
+      .catch((error) => {
+        console.error(
+          "There has been a problem with your fetch operation:",
+          error
+        );
+      });
+  };
+};
+
+export const updateProduct = (id, payload) => {
+  return (dispatch, getState) => {
+    fetch(`http://localhost:3001/products/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not OK");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        dispatch({ type: "UPDATE_PRODUCT", payload: data });
       })
       .catch((error) => {
         console.error(
