@@ -6,7 +6,7 @@ import { FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { deleteAsset } from "../store/action/actionCreator";
 
-function CardAsset({ asset }) {
+function CardAsset({ assets }) {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -23,14 +23,14 @@ function CardAsset({ asset }) {
   return (
     <Card style={{ width: "18rem" }}>
       <Card.Body>
-        <Card.Title>{asset.name}</Card.Title>
-        <Card.Img variant="top" src={asset.path} />
+        <Card.Title>{assets.name}</Card.Title>
+        <Card.Img variant="top" src={assets.path} />
       </Card.Body>
       <Card.Body>
-        <Button variant="dark" onClick={() => handleGoToEdit(asset.id)}>
+        <Button variant="dark" onClick={() => handleGoToEdit(assets.id)}>
           <FaEdit />
         </Button>
-        <Button variant="dark" onClick={() => handleDelete(asset.id)}>
+        <Button variant="dark" onClick={() => handleDelete(assets.id)}>
           <FaTrash />
         </Button>
       </Card.Body>

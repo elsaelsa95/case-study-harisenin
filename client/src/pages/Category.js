@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export default function Category() {
-  const { category } = useSelector((state) => state);
+  const { categories } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,8 +25,8 @@ export default function Category() {
     <>
       <section className="py-5">
         <div className="container">
-          {category.map((category) => {
-            return <CardCategory category={category} key={category.id} />;
+          {categories.map((categories) => {
+            return <CardCategory categories={categories} key={categories.id} />;
           })}
           <Button variant="dark" onClick={() => handleGoToCreate()}>
             New

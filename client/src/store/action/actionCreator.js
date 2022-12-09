@@ -77,7 +77,52 @@ export const deleteCategory = (id) => {
         return response.json();
       })
       .then((data) => {
-        dispatch(readAsset());
+        dispatch(readCategory());
+      })
+      .catch((error) => {
+        console.error(
+          "There has been a problem with your fetch operation:",
+          error
+        );
+      });
+  };
+};
+
+export const readProduct = (payload) => {
+  return (dispatch, getState) => {
+    fetch("http://localhost:3001/productAsset", {})
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not OK");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        dispatch({ type: "READ_PRODUCT", payload: data });
+        console.log(data, "data");
+      })
+      .catch((error) => {
+        console.error(
+          "There has been a problem with your fetch operation:",
+          error
+        );
+      });
+  };
+};
+
+export const deleteProduct = (id) => {
+  return (dispatch, getState) => {
+    fetch(`http://localhost:3001/productAsset/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not OK");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        dispatch(readProduct());
       })
       .catch((error) => {
         console.error(

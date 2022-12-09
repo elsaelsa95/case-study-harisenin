@@ -5,6 +5,7 @@ import Category from "./../pages/Category";
 import Product from "./../pages/Product";
 import FormAsset from "./../components/FormAsset"
 import FormCategory from "./../components/FormCategory"
+import FormProduct from "./../components/FormProduct"
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,14 @@ const router = createBrowserRouter([
   {
     path: "/products",
     element: <Product />,
+  },
+  {
+    path: "/createProduct",
+    element: <FormProduct />,
+  },
+  {
+    path: "/products/:id",
+    element: <FormProduct />,
   },
   {
     path: "*",

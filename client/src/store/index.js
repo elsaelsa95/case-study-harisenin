@@ -3,8 +3,9 @@ import logger from "./middleware/logger";
 import thunk from "redux-thunk";
 
 const initialState = {
-  asset: [],
-  category:[]
+  assets: [],
+  categories:[],
+  products:[]
 };
 
 function rootReducer(state = initialState, action) {
@@ -12,12 +13,17 @@ function rootReducer(state = initialState, action) {
     case "READ_ASSET":
       return {
         ...state,
-        asset: action.payload,
+        assets: action.payload,
       };
       case "READ_CATEGORY":
       return {
         ...state,
-        category: action.payload,
+        categories: action.payload,
+      };
+      case "READ_PRODUCT":
+      return {
+        ...state,
+        products: action.payload,
       };
     default:
       return state;

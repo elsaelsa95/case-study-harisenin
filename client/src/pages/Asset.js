@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export default function Asset() {
-  const { asset } = useSelector((state) => state);
+  const { assets } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,8 +24,8 @@ export default function Asset() {
     <>
       <section className="py-5">
         <div className="container">
-          {asset.map((asset) => {
-            return <CardAsset asset={asset} key={asset.id} />;
+          {assets.map((assets) => {
+            return <CardAsset assets={assets} key={assets.id} />;
           })}
           <Button variant="dark" onClick={() => handleGoToCreate()}>
             New

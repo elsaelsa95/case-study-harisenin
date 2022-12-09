@@ -1,4 +1,4 @@
-const { ProductAsset } = require("./../models");
+const { ProductAsset, Product, Category, Asset } = require("./../models");
 
 class Controller {
   static async create(req, res, next) {
@@ -18,7 +18,9 @@ class Controller {
   }
   static async list(req, res, next) {
     try {
-      const findAllProductAsset = await ProductAsset.findAll();
+      const findAllProductAsset = await ProductAsset.findAll({
+        include: [{ model: Product }, { model: Category }, { model: Asset }],
+      });
       if (!findAllProductAsset) {
         throw { name: "Data not found" };
       } else {
