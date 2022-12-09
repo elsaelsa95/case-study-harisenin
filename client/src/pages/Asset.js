@@ -1,4 +1,5 @@
 import CardAsset from "./../components/CardAsset";
+import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { readAsset } from "../store/action/actionCreator";
 import { useEffect } from "react";
@@ -27,9 +28,13 @@ export default function Asset() {
           {assets.map((assets) => {
             return <CardAsset assets={assets} key={assets.id} />;
           })}
-          <Button variant="dark" onClick={() => handleGoToCreate()}>
-            New
-          </Button>
+          <Card style={{ width: "18rem" }} className="mb-2">
+            <Card.Body>
+              <Button variant="white" onClick={() => handleGoToCreate()}>
+                +
+              </Button>
+            </Card.Body>
+          </Card>
         </div>
       </section>
     </>

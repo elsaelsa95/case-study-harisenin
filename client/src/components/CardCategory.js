@@ -21,7 +21,7 @@ function CardCategory({ categories }) {
   };
 
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card style={{ width: "18rem" }} className="mb-2">
       <Card.Body>
         <Card.Title>{categories.categoryName}</Card.Title>
         <Card.Img variant="top" src={categories.Asset.path} />

@@ -1,5 +1,5 @@
-import CardCategory from './../components/CardCategory'
-
+import CardCategory from "./../components/CardCategory";
+import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { readCategory } from "../store/action/actionCreator";
 import { useEffect } from "react";
@@ -28,9 +28,13 @@ export default function Category() {
           {categories.map((categories) => {
             return <CardCategory categories={categories} key={categories.id} />;
           })}
-          <Button variant="dark" onClick={() => handleGoToCreate()}>
-            New
-          </Button>
+          <Card style={{ width: "18rem" }} className="mb-2">
+            <Card.Body>
+              <Button variant="white" onClick={() => handleGoToCreate()}>
+                +
+              </Button>
+            </Card.Body>
+          </Card>
         </div>
       </section>
     </>

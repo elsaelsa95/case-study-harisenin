@@ -4,8 +4,9 @@ import thunk from "redux-thunk";
 
 const initialState = {
   assets: [],
-  categories:[],
-  products:[]
+  categories: [],
+  products: [],
+  assetById: null,
 };
 
 function rootReducer(state = initialState, action) {
@@ -15,12 +16,23 @@ function rootReducer(state = initialState, action) {
         ...state,
         assets: action.payload,
       };
-      case "READ_CATEGORY":
+    case "READ_DETAIL_ASSET":
+      return {
+        ...state,
+        assetById: action.payload,
+      };
+    case "UPDATE_ASSET":
+      return {
+        ...state,
+        assetById: action.payload,
+      };
+
+    case "READ_CATEGORY":
       return {
         ...state,
         categories: action.payload,
       };
-      case "READ_PRODUCT":
+    case "READ_PRODUCT":
       return {
         ...state,
         products: action.payload,

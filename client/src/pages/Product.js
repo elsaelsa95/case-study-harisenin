@@ -1,5 +1,5 @@
-import CardProduct from './../components/CardProduct'
-
+import CardProduct from "./../components/CardProduct";
+import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { readProduct } from "../store/action/actionCreator";
 import { useEffect } from "react";
@@ -28,9 +28,13 @@ export default function Product() {
           {products.map((products) => {
             return <CardProduct products={products} key={products.id} />;
           })}
-          <Button variant="dark" onClick={() => handleGoToCreate()}>
-            New
-          </Button>
+          <Card style={{ width: "18rem" }} className="mb-2">
+            <Card.Body>
+              <Button variant="white" onClick={() => handleGoToCreate()}>
+                +
+              </Button>
+            </Card.Body>
+          </Card>
         </div>
       </section>
     </>
