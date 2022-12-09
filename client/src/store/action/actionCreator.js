@@ -132,7 +132,7 @@ export const createCategory = (payload) => {
         return response.json();
       })
       .then((data) => {
-        dispatch(readAsset());
+        dispatch(readCategory());
       })
       .catch((error) => {
         return error;
@@ -260,7 +260,7 @@ export const createProduct = (payload) => {
 
 export const readProduct = (payload) => {
   return (dispatch, getState) => {
-    fetch("http://localhost:3001/productAsset", {})
+    fetch("http://localhost:3001/products", {})
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not OK");
@@ -331,7 +331,7 @@ export const updateProduct = (id, payload) => {
 
 export const deleteProduct = (id) => {
   return (dispatch, getState) => {
-    fetch(`http://localhost:3001/productAsset/${id}`, {
+    fetch(`http://localhost:3001/products/${id}`, {
       method: "DELETE",
     })
       .then((response) => {
