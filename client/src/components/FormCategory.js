@@ -1,52 +1,49 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
-  createAsset,
-  readDetailAsset,
-  updateAsset,
+  createCategory,
+  readDetailCategory,
+  updateCategory,
 } from "../store/action/actionCreator";
 import { useDispatch, useSelector } from "react-redux";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-export default function FormCreate() {
+export default function FormCategory() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
-  const { assetById } = useSelector((state) => state);
+  const { categoryById } = useSelector((state) => state);
 
   const handleGoTo = () => {
     navigate({
-      pathname: "/assets",
+      pathname: "/categories",
     });
   };
 
   let [input, setInput] = useState({
-    name: "",
-    path: "",
-    size: "",
+    categoryName: "",
+    AssetId: "",
   });
 
   useEffect(() => {
-    if (assetById) {
+    if (categoryById) {
       setInput({
-        name: assetById.findAsset.name,
-        path: assetById.findAsset.path,
-        size: assetById.findAsset.size,
+        categoryName: categoryById.findCategory.categoryName,
+        AssetId: categoryById.findCategory.AssetId,
       });
     }
-  }, [assetById]);
+  }, [categoryById]);
 
   useEffect(() => {
     if (id) {
-      dispatch(readDetailAsset(id));
+      dispatch(readDetailCategory(id));
     }
     if (!id) {
       setInput({
-        name: "",
-        path: "",
-        size: "",
+        categoryName: "",
+        AssetId: "",
       });
     }
   }, []);
@@ -56,55 +53,45 @@ export default function FormCreate() {
       ...input,
       [e.target.name]: e.target.value,
     });
-    console.log(e.target.name)
-    console.log(e.target.value)
-    console.log(e.target)
+    console.log(e.target.name);
+    console.log(e.target.value);
+    console.log(e.target);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!id) {
-      dispatch(createAsset(input));
+      dispatch(createCategory(input));
       handleGoTo();
     }
     if (id) {
-      dispatch(updateAsset(id, input));
+      dispatch(updateCategory(id, input));
       handleGoTo();
     }
   };
-
   return (
     <section className="py-5">
       <div className="container">
-        <h1> Form Asset </h1>
+        <h1> Form Category </h1>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
-            <Form.Label>Name</Form.Label>
+            <Form.Label>Category Name</Form.Label>
             <Form.Control
-              value={input.name}
+              value={input.categoryName}
               onChange={handleChange}
-              name="name"
+              name="categoryName"
               type="text"
-              placeholder="Enter name"
+              placeholder="Enter Category Name"
             />
-            <Form.Label>Path</Form.Label>
+            <Form.Label>AssetId</Form.Label>
             <Form.Control
-              value={input.path}
+              value={input.AssetId}
               onChange={handleChange}
-              name="path"
+              name="AssetId"
               type="text"
-              placeholder="Enter Path"
-            />
-            <Form.Label>Size</Form.Label>
-            <Form.Control
-              value={input.size}
-              onChange={handleChange}
-              name="size"
-              type="text"
-              placeholder="Enter Size"
+              placeholder="Enter AssetId"
             />
           </Form.Group>
-
           <Button variant="dark" type="submit">
             Submit
           </Button>

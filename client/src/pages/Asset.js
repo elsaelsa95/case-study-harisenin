@@ -1,4 +1,5 @@
 import CardAsset from "./../components/CardAsset";
+import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { readAsset } from "../store/action/actionCreator";
 import { useEffect } from "react";
@@ -6,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export default function Asset() {
-  const { asset } = useSelector((state) => state);
+  const { assets } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,12 +25,16 @@ export default function Asset() {
     <>
       <section className="py-5">
         <div className="container">
-          {asset.map((asset) => {
-            return <CardAsset asset={asset} key={asset.id} />;
+          {assets.map((assets) => {
+            return <CardAsset assets={assets} key={assets.id} />;
           })}
-          <Button variant="dark" onClick={() => handleGoToCreate()}>
-            New
-          </Button>
+          <Card style={{ width: "18rem" }} className="mb-2">
+            <Card.Body>
+              <Button variant="white" onClick={() => handleGoToCreate()}>
+                +
+              </Button>
+            </Card.Body>
+          </Card>
         </div>
       </section>
     </>

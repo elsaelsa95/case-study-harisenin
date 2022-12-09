@@ -1,5 +1,5 @@
 const urlSlug = require("url-slug");
-const { Category } = require("./../models");
+const { Category , Asset} = require("./../models");
 
 class Controller {
   static async create(req, res, next) {
@@ -19,7 +19,9 @@ class Controller {
   }
   static async list(req, res, next) {
     try {
-      const findAllCategories = await Category.findAll();
+      const findAllCategories = await Category.findAll({
+        include: { model: Asset },
+      });
       if (!findAllCategories) {
         throw { name: "Data not found" };
       } else {
