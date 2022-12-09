@@ -110,6 +110,27 @@ export const deleteAsset = (id) => {
   };
 };
 
+export const createCategory = (payload) => {
+  return (dispatch, getState) => {
+    fetch("http://localhost:3001/categories", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not OK");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        dispatch(readAsset());
+      })
+      .catch((error) => {
+        return error;
+      });
+  };
+};
+
 export const readCategory = (payload) => {
   return (dispatch, getState) => {
     fetch("http://localhost:3001/categories", {})
@@ -122,6 +143,52 @@ export const readCategory = (payload) => {
       .then((data) => {
         dispatch({ type: "READ_CATEGORY", payload: data });
         console.log(data, "data");
+      })
+      .catch((error) => {
+        console.error(
+          "There has been a problem with your fetch operation:",
+          error
+        );
+      });
+  };
+};
+
+export const readDetailCategory = (id) => {
+  return (dispatch, getState) => {
+    fetch(`http://localhost:3001/categories/${id}`, {
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not OK");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        dispatch({ type: "READ_DETAIL_CATEGORY", payload: data });
+      })
+      .catch((error) => {
+        console.error(
+          "There has been a problem with your fetch operation:",
+          error
+        );
+      });
+  };
+};
+
+export const updateCategory = (id, payload) => {
+  return (dispatch, getState) => {
+    fetch(`http://localhost:3001/categories/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(payload),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not OK");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        dispatch({ type: "UPDATE_CATEGORY", payload: data });
       })
       .catch((error) => {
         console.error(

@@ -6,7 +6,8 @@ const initialState = {
   assets: [],
   categories: [],
   products: [],
-  assetById: null,
+  assetById: "",
+  categoryById: "",
 };
 
 function rootReducer(state = initialState, action) {
@@ -32,6 +33,17 @@ function rootReducer(state = initialState, action) {
         ...state,
         categories: action.payload,
       };
+    case "READ_DETAIL_CATEGORY":
+      return {
+        ...state,
+        categoryById: action.payload,
+      };
+    case "UPDATE_CATEGORY":
+      return {
+        ...state,
+        categoryById: action.payload,
+      };
+
     case "READ_PRODUCT":
       return {
         ...state,
