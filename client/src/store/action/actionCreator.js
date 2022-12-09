@@ -2,6 +2,9 @@ export const createAsset = (payload) => {
   return (dispatch, getState) => {
     fetch("http://localhost:3001/assets", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(payload),
     })
       .then((response) => {
@@ -67,6 +70,9 @@ export const updateAsset = (id, payload) => {
   return (dispatch, getState) => {
     fetch(`http://localhost:3001/assets/${id}`, {
       method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(payload),
     })
       .then((response) => {
@@ -114,6 +120,9 @@ export const createCategory = (payload) => {
   return (dispatch, getState) => {
     fetch("http://localhost:3001/categories", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(payload),
     })
       .then((response) => {
@@ -179,6 +188,9 @@ export const updateCategory = (id, payload) => {
   return (dispatch, getState) => {
     fetch(`http://localhost:3001/categories/${id}`, {
       method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(payload),
     })
       .then((response) => {
